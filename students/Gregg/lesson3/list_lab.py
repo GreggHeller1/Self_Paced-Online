@@ -64,7 +64,24 @@ def remove_input_fruit(fruits):
         fruits = remove_input_fruit(fruits*2)
     return fruits
 
-
+def remove_disliked_fruits(fruits):
+    """Remove fruits that the user doesn't like"""
+    del_fruits = []
+    for idx, fruit in enumerate(fruits[:]):#Im' ok with the shallow copy here because I know we are nly using it to iterate
+        while True:
+            liked = input(f"Do you like {fruit}? ")
+            input_valid = liked.lower() == 'yes' or liked.lower() == 'no'
+            if input_valid:
+                break
+            print('Please answer with yes or no')
+        if liked.lower() == 'no':
+            del_fruits.append(idx)
+            #Deleting items this way so we get the correct instance if there
+            #are more than one copy in the list
+    del_fruits.reverse()
+    for idx in del_fruits:
+        fruits.pop(idx)
+    return fruits
 
 def tests():
     """Test the ________ functions"""
@@ -83,14 +100,14 @@ def exercise_demo(func_in, arg_in = None):
 
 if __name__ == "__main__":
     tests()
-    print('LessonX: _______ Exercise, Series 1')
+    print('Lesson3: List Exercise, Series 1')
     exercise_demo(fruits_list)
     fruits = exercise_demo(append_input_fruit)
     exercise_demo(index_input_fruit, arg_in = fruits)
     fruits = exercise_demo(add_fruit_plus, arg_in = fruits)
     fruits = exercise_demo(add_fruit_insert, arg_in = fruits)
     p_fruits = exercise_demo(p_fruits, arg_in = fruits)
-    print('LessonX: _______ Exercise, Series 2')
+    print('Lesson3: List Exercise, Series 2')
     fruits1 = copy.copy(fruits)
     print(fruits1)
     #Hmm I just realized that returning the output is redundant since I never actually cpy the list...its always the same list
@@ -98,3 +115,6 @@ if __name__ == "__main__":
     #nevrmind, we aactually do want to copy it so we can use it again later in series 3
     fruits2 = exercise_demo(remove_last_fruit, arg_in = fruits1)
     fruits2 = exercise_demo(remove_input_fruit, arg_in = fruits1)
+    print('Lesson3: List Exercise, Series 3')
+    fruits1 = copy.copy(fruits)
+    fruits3 = exercise_demo(remove_disliked_fruits, arg_in = fruits1)
