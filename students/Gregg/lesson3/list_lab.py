@@ -83,6 +83,14 @@ def remove_disliked_fruits(fruits):
         fruits.pop(idx)
     return fruits
 
+def reverse_fruit_letters(fruits):
+    """Make a copy of the list and reverse the letters in each fruit in the copy"""
+    fruit_copy = copy.copy(fruits)
+    for idx, fruit in enumerate(fruit_copy):
+        fruit_copy[idx] = fruit[::-1]
+    return fruit_copy
+
+
 def tests():
     """Test the ________ functions"""
     pass
@@ -108,13 +116,23 @@ if __name__ == "__main__":
     fruits = exercise_demo(add_fruit_insert, arg_in = fruits)
     p_fruits = exercise_demo(p_fruits, arg_in = fruits)
     print('Lesson3: List Exercise, Series 2')
-    fruits1 = copy.copy(fruits)
+    fruits1 = fruits_list()#copy.copy(fruits)
     print(fruits1)
     #Hmm I just realized that returning the output is redundant since I never actually cpy the list...its always the same list
     #but funtions are still supposed to return things, so its not hurting anything?
     #nevrmind, we aactually do want to copy it so we can use it again later in series 3
+    #Now I think I understand the list at the beginning of Series1, not the one at the end...
     fruits2 = exercise_demo(remove_last_fruit, arg_in = fruits1)
-    fruits2 = exercise_demo(remove_input_fruit, arg_in = fruits1)
+    fruits2 = exercise_demo(remove_input_fruit, arg_in = fruits2)
     print('Lesson3: List Exercise, Series 3')
-    fruits1 = copy.copy(fruits)
+    fruits1 = fruits_list()
     fruits3 = exercise_demo(remove_disliked_fruits, arg_in = fruits1)
+    print('Lesson3: List Exercise, Series 4')
+    fruits1 = fruits_list()
+    fruits4 = exercise_demo(reverse_fruit_letters, arg_in = fruits1)
+    fruits1.pop()
+    print(f'original: {fruits1}')
+    print(f'copy: {fruits4}')
+
+
+
