@@ -130,6 +130,7 @@ if __name__ == "__main__":
     print('Lesson3: List Exercise, Series 4')
     fruits1 = fruits_list()
     fruits4 = exercise_demo(reverse_fruit_letters, arg_in = fruits1)
+    print('Delete the last item of the original list. Display the original list and the copy')
     fruits1.pop()
     print(f'original: {fruits1}')
     print(f'copy: {fruits4}')
