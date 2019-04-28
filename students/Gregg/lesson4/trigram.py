@@ -4,7 +4,6 @@
 
 import copy
 import random
-import pprint as pp
 
 
 short_path = "sherlock_small.txt"
@@ -25,23 +24,19 @@ def trigram_dict(path):
     word_list = split_all_punctianion(word_list)
     trigram_dict = {}
     for idx in range(len(word_list) - 2):
-        key = join_key(word_list[idx], word_list[idx+1])
+        key = join_key(word_list[idx], word_list[idx + 1])
         try:
-            trigram_dict[key].append(word_list[idx+2])
-        except KeyError as E:
-            trigram_dict[key] = [word_list[idx+2]]
+            trigram_dict[key].append(word_list[idx + 2])
+        except KeyError:
+            trigram_dict[key] = [word_list[idx + 2]]
     return trigram_dict
-    #Only  dissadvantage of doing it this way is that "word1 word2 " and "word1 word2" become different keys.
+    # Only  dissadvantage of doing it this way is that "word1 word2 " and
+    # "word1 word2" become different keys.
     # the decision is made earlier but I think it works out the same
 
-#def join_key(word1, word2):
-    """join two words to form a key to the trigram dict"""
-    # Splitting off this menial function in case I change how this is done
-    # I only need to change it in one place
-    # i guess it could be a string constant instead of a function
-    #return f"{word1}{word2}"
 
 join_key = "{}{}".format
+
 
 def split_all_punctianion(word_list_in):
     """split words that contain while preserving word order"""
